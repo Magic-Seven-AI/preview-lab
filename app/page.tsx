@@ -16,7 +16,7 @@ export default function Home() {
     <main className={styles.page} data-env={env}>
       <p className={styles.badge}>{label}</p>
       <h1 className={styles.title}>preview-lab</h1>
-      <p className={styles.subtitle}>Vercel preview-deployment experiment</p>
+      <p className={styles.subtitle}>Blue background — feat/blue-background</p>
       <dl className={styles.meta}>
         <div>
           <dt>VERCEL_ENV</dt>
