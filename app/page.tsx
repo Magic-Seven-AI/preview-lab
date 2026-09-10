@@ -1,44 +1,57 @@
 import { Suspense } from "react";
+import { CameraGrid } from "@/components/cameras/camera-grid";
 import {
   TravelTimeCard,
   TravelTimeFallback,
 } from "@/components/travel-time-card";
+import { loadCorridorCameras } from "@/lib/cameras/caltrans";
 import styles from "./page.module.css";
 
-export default function Home() {
-  const env = process.env.VERCEL_ENV ?? "local";
-  const branch = process.env.VERCEL_GIT_COMMIT_REF ?? "—";
-  const sha = process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? "—";
-
-  const label =
-    env === "production"
-      ? "This is production"
-      : env === "preview"
-        ? "This is a preview"
-        : "This is local";
+export default async function Home() {
+  const cameras = await loadCorridorCameras();
 
   return (
-    <main className={styles.page} data-env={env}>
-      <p className={styles.badge}>{label}</p>
-      <h1 className={styles.title}>preview-lab</h1>
-      <p className={styles.subtitle}>Blue background — feat/blue-background</p>
+    <main className={styles.page}>
+      <header className={styles.header}>
+        <p className={styles.kicker}>OAK → Truckee</p>
+        <h1 className={styles.title}>Corridor cameras</h1>
+        <p className={styles.subtitle}>
+          Ten Caltrans stills along I-880 and I-80, from Oakland Airport to
+          Truckee — spots that usually jam up or take the Sierra weather.
+        </p>
+      </header>
+
       <Suspense fallback={<TravelTimeFallback />}>
         <TravelTimeCard />
       </Suspense>
-      <dl className={styles.meta}>
-        <div>
-          <dt>VERCEL_ENV</dt>
-          <dd>{env}</dd>
-        </div>
-        <div>
-          <dt>Branch</dt>
-          <dd>{branch}</dd>
-        </div>
-        <div>
-          <dt>Commit</dt>
-          <dd>{sha}</dd>
-        </div>
-      </dl>
+
+      <p className={styles.legend}>
+        <span>
+          <span className={`${styles.dot} ${styles.traffic}`} />
+          High traffic
+        </span>
+        <span>
+          <span className={`${styles.dot} ${styles.weather}`} />
+          Bad weather
+        </span>
+      </p>
+
+      <ol className={styles.route} aria-label="West to east">
+        {cameras.map((cam, i) => (
+          <li key={cam.id} className={styles.stop}>
+            <b>
+              {i + 1}. {cam.place}
+            </b>
+            {cam.title}
+          </li>
+        ))}
+      </ol>
+
+      <CameraGrid cameras={cameras} />
+
+      <p className={styles.credit}>
+        Stills from Caltrans CWWP2. Images refresh about every 45 seconds.
+      </p>
     </main>
   );
 }
