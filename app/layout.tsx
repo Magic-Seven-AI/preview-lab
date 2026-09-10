@@ -13,8 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "preview-lab",
-  description: "Vercel preview-deployment experiment",
+  title: "OAK → Truckee cameras",
+  description:
+    "Live Caltrans traffic cameras from Oakland Airport to Truckee along I-880 and I-80.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
