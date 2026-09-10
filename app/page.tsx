@@ -1,3 +1,8 @@
+import { Suspense } from "react";
+import {
+  TravelTimeCard,
+  TravelTimeFallback,
+} from "@/components/travel-time-card";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -17,6 +22,9 @@ export default function Home() {
       <p className={styles.badge}>{label}</p>
       <h1 className={styles.title}>preview-lab</h1>
       <p className={styles.subtitle}>Blue background — feat/blue-background</p>
+      <Suspense fallback={<TravelTimeFallback />}>
+        <TravelTimeCard />
+      </Suspense>
       <dl className={styles.meta}>
         <div>
           <dt>VERCEL_ENV</dt>

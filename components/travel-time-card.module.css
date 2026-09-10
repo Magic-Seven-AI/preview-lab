@@ -1,0 +1,61 @@
+.card {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.18);
+  max-width: 28rem;
+}
+
+.kicker {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.route {
+  margin: 0.35rem 0 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.depart {
+  margin: 0.4rem 0 0;
+  opacity: 0.85;
+}
+
+.duration,
+.durationPending {
+  margin: 0.85rem 0 0;
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.durationPending {
+  opacity: 0.45;
+}
+
+.meta,
+.error {
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.error {
+  margin-top: 0.85rem;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
